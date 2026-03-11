@@ -1,0 +1,128 @@
+/* ── Design Tokens ─────────────────────────────────────────── */
+:root {
+  --color-text:      #1A1A1A;
+  --color-accent:    #5B8BA0;
+  --color-border:    #E0E0E0;
+  --color-secondary: #9E9E9E;
+  --color-bg:        #FFFFFF;
+  --color-footer-bg: #F7F7F7;
+
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Karla', system-ui, sans-serif;
+
+  --max-width:  1440px;
+  --padding-x:  120px;
+  --content-width: 800px;
+  --sidebar-width: 240px;
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Base ──────────────────────────────────────────────────── */
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Typography ────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+h1 { font-size: 42px; }
+h2 { font-size: 28px; }
+h3 { font-size: 22px; }
+h4 { font-size: 18px; }
+
+p { font-size: 16px; line-height: 1.75; }
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+/* ── Layout Utility ────────────────────────────────────────── */
+.container {
+  max-width: var(--max-width);
+  padding: 0 var(--padding-x);
+  margin: 0 auto;
+}
+
+/* ── Section Headings ──────────────────────────────────────── */
+.section-heading {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 8px;
+  margin-bottom: 24px;
+}
+
+/* ── Entry Block ───────────────────────────────────────────── */
+.entry {
+  margin-bottom: 28px;
+}
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 4px;
+}
+.entry-title {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+.entry-date {
+  font-size: 14px;
+  color: var(--color-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.entry-sub {
+  font-size: 14px;
+  color: var(--color-secondary);
+  margin-bottom: 6px;
+}
+.entry-body {
+  font-size: 15px;
+  line-height: 1.7;
+}
+.entry-bullet {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-left: 4px;
+}
+
+/* ── Subsection Label ──────────────────────────────────────── */
+.subsection-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: 16px;
+  margin-top: 8px;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  :root {
+    --padding-x: 24px;
+  }
+  h1 { font-size: 32px; }
+  h2 { font-size: 24px; }
+}
