@@ -1,21 +1,28 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { sanityClient } from '../lib/sanity';
 
-const pages = ['/resume-1.png', '/resume-2.png', '/resume-3.png'];
+const bio = await sanityClient.fetch(`*[_type == "bio"][0]{
+  resumePdf { asset->{ url } },
+  resumePages[] { asset->{ url } }
+}`);
+
+const pages: string[] = bio?.resumePages?.map((p: any) => p.asset.url) ?? [];
+const pdfUrl: string = bio?.resumePdf?.asset?.url ?? '/resume.pdf';
 ---
 
 <BaseLayout title="CV">
   <div class="cv-wrap">
     {pages.map((src, i) => (
       <div class="cv-page">
-        <a href="/resume.pdf" target="_blank" rel="noopener">
+        <a href={pdfUrl} target="_blank" rel="noopener">
           <img src={src} alt={`Résumé page ${i + 1}`} />
         </a>
       </div>
     ))}
 
     <div class="cv-download">
-      <a href="/resume.pdf" download class="download-btn">Download CV</a>
+      <a href={pdfUrl} download class="download-btn">Download CV</a>
     </div>
   </div>
 </BaseLayout>

@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { sanityClient } from '../lib/sanity';
 
-const bio = await sanityClient.fetch(`*[_type == "bio"][0]`);
+const bio = await sanityClient.fetch(`*[_type == "bio"][0]{ ..., profilePhoto { asset->{ url } } }`);
 ---
 
 <BaseLayout title="About Me">
@@ -22,7 +22,7 @@ const bio = await sanityClient.fetch(`*[_type == "bio"][0]`);
       <!-- Right Sidebar: Portrait + Contact + Jump Links -->
       <aside class="sidebar">
 
-        <img src="/profile.jpg" alt="Jose F. Brevil, Jr." class="portrait" />
+        <img src={bio.profilePhoto?.asset?.url ?? '/profile.jpg'} alt="Jose F. Brevil, Jr." class="portrait" />
 
         <div class="contact-card">
           <p class="contact-name">Jose F. Brevil, Jr.</p>

@@ -13,5 +13,14 @@ export const bio = defineType({
     defineField({ name: 'paragraph4', title: 'Paragraph 4', type: 'text' }),
     defineField({ name: 'email', title: 'Email', type: 'string' }),
     defineField({ name: 'linkedinUrl', title: 'LinkedIn URL', type: 'url' }),
+    defineField({ name: 'profilePhoto', title: 'Profile Photo', type: 'image' }),
+    defineField({ name: 'resumePdf', title: 'Resume PDF', type: 'file', options: { accept: '.pdf' } }),
+    defineField({
+      name: 'resumePages',
+      title: 'Resume Page Images (PNGs)',
+      type: 'array',
+      of: [{ type: 'image' }],
+      description: 'Upload one image per page, in order.',
+    }),
   ],
 });
