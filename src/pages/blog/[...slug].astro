@@ -14,7 +14,21 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description}>
+<BaseLayout title={post.data.title} description={post.data.description} type="article">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": post.data.title,
+      "description": post.data.description,
+      "datePublished": post.data.date.toISOString(),
+      "author": {
+        "@type": "Person",
+        "name": "Jose F. Brevil, Jr.",
+        "url": "https://josebrevil.com",
+      },
+    })} />
+  </Fragment>
   <div class="container page-content">
     <a href="/blog" class="back-link">← All posts</a>
 
