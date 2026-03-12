@@ -164,7 +164,79 @@ declare module 'astro:content' {
 	};
 
 	type DataEntryMap = {
-		
+		"experience": {
+"bible-fellowship-cleveland": {
+	id: "bible-fellowship-cleveland";
+  collection: "experience";
+  data: InferEntrySchema<"experience">
+};
+"certifications": {
+	id: "certifications";
+  collection: "experience";
+  data: InferEntrySchema<"experience">
+};
+"cleveland-childrens-clinic": {
+	id: "cleveland-childrens-clinic";
+  collection: "experience";
+  data: InferEntrySchema<"experience">
+};
+"languages": {
+	id: "languages";
+  collection: "experience";
+  data: InferEntrySchema<"experience">
+};
+"mississippi-school-for-mathematics-and-science": {
+	id: "mississippi-school-for-mathematics-and-science";
+  collection: "experience";
+  data: InferEntrySchema<"experience">
+};
+"msms-mock-trial": {
+	id: "msms-mock-trial";
+  collection: "experience";
+  data: InferEntrySchema<"experience">
+};
+"msms-student-it-coordinator": {
+	id: "msms-student-it-coordinator";
+  collection: "experience";
+  data: InferEntrySchema<"experience">
+};
+"north-mississippi-rural-legal-services": {
+	id: "north-mississippi-rural-legal-services";
+  collection: "experience";
+  data: InferEntrySchema<"experience">
+};
+"office-of-the-district-attorney": {
+	id: "office-of-the-district-attorney";
+  collection: "experience";
+  data: InferEntrySchema<"experience">
+};
+"ole-miss-investment-group": {
+	id: "ole-miss-investment-group";
+  collection: "experience";
+  data: InferEntrySchema<"experience">
+};
+"technical-skills": {
+	id: "technical-skills";
+  collection: "experience";
+  data: InferEntrySchema<"experience">
+};
+"the-daily-mississippian": {
+	id: "the-daily-mississippian";
+  collection: "experience";
+  data: InferEntrySchema<"experience">
+};
+"undergraduate-black-law-students-association": {
+	id: "undergraduate-black-law-students-association";
+  collection: "experience";
+  data: InferEntrySchema<"experience">
+};
+"university-of-mississippi": {
+	id: "university-of-mississippi";
+  collection: "experience";
+  data: InferEntrySchema<"experience">
+};
+};
+
 	};
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
