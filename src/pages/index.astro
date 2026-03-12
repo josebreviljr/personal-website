@@ -31,17 +31,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </p>
       </div>
 
-      <!-- Right Sidebar: Contact + Jump Links -->
+      <!-- Right Sidebar: Portrait + Contact + Jump Links -->
       <aside class="sidebar">
+
+        <img src="/profile.jpg" alt="Jose F. Brevil, Jr." class="portrait" />
 
         <div class="contact-card">
           <p class="contact-name">Jose F. Brevil, Jr.</p>
           <p class="contact-line">[University Name]</p>
           <p class="contact-line">[Major], [Year]</p>
           <div class="contact-divider"></div>
-          <a href="mailto:jose@university.edu" class="contact-link">jose@university.edu</a>
+          <a href="mailto:josebreviljr@gmail.com" class="contact-link">josebreviljr@gmail.com</a>
           <a
-            href="https://linkedin.com/in/josebrevil"
+            href="https://linkedin.com/in/josebreviljr"
             target="_blank"
             rel="noopener"
             class="contact-link"
@@ -65,7 +67,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <style>
 .page-content {
-  padding-top: 80px;
+  padding-top: 40px;
   padding-bottom: 60px;
 }
 
@@ -104,6 +106,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   gap: 24px;
   position: sticky;
   top: 88px;
+}
+
+.portrait {
+  width: 100%;
+  border-radius: 4px;
+  display: block;
 }
 
 .contact-card,

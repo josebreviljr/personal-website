@@ -1,55 +1,62 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pages = ['/resume-1.png', '/resume-2.png', '/resume-3.png'];
 ---
 
 <BaseLayout title="Résumé">
-  <div class="container page-content">
-    <div class="resume-header">
-      <h1>Résumé</h1>
-      <a href="/resume.pdf" download class="download-btn">Download Résumé</a>
-    </div>
+  <div class="cv-wrap">
+    {pages.map((src, i) => (
+      <div class="cv-page">
+        <a href="/resume.pdf" target="_blank" rel="noopener">
+          <img src={src} alt={`Résumé page ${i + 1}`} />
+        </a>
+      </div>
+    ))}
 
-    <!-- PDF embed (built last — placeholder until resume.pdf is added to /public) -->
-    <div class="pdf-wrapper">
-      <p class="pdf-placeholder">
-        Resume PDF will be embedded here. Add <code>resume.pdf</code> to the
-        <code>public/</code> folder, then uncomment the iframe below.
-      </p>
-      <!--
-      <iframe
-        src="/resume.pdf"
-        width="100%"
-        height="800"
-        title="Jose F. Brevil, Jr. — Résumé"
-      >
-        <p>
-          Your browser does not support inline PDFs.
-          <a href="/resume.pdf">Download the résumé instead.</a>
-        </p>
-      </iframe>
-      -->
+    <div class="cv-download">
+      <a href="/resume.pdf" download class="download-btn">Download CV</a>
     </div>
   </div>
 </BaseLayout>
 
 <style>
-.page-content {
-  padding-top: 80px;
-  padding-bottom: 60px;
-  max-width: var(--content-width);
+.cv-wrap {
+  background: #fff;
+  padding: 48px 24px 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
 }
 
-.resume-header {
+.cv-page {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 32px;
-  gap: 16px;
+  width: 100%;
+  max-width: 760px;
+}
+
+.cv-page a {
+  display: block;
+  width: 100%;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
+
+.cv-page img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cv-download {
+  margin-top: 8px;
 }
 
 .download-btn {
   display: inline-block;
-  padding: 10px 24px;
+  padding: 10px 28px;
   background: var(--color-accent);
   color: #fff;
   font-family: var(--font-body);
@@ -57,32 +64,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   font-weight: 700;
   border-radius: 3px;
   text-decoration: none;
-  white-space: nowrap;
   transition: opacity 0.15s;
 }
-.download-btn:hover {
-  opacity: 0.88;
-  text-decoration: none;
-}
-
-.pdf-wrapper iframe {
-  width: 100%;
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-}
-
-.pdf-placeholder {
-  border: 1px dashed var(--color-border);
-  border-radius: 4px;
-  padding: 40px;
-  text-align: center;
-  color: var(--color-secondary);
-  font-size: 14px;
-}
-.pdf-placeholder code {
-  background: #f4f4f4;
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-size: 13px;
-}
+.download-btn:hover { opacity: 0.88; text-decoration: none; }
 </style>
