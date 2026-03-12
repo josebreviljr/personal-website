@@ -8,21 +8,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <!-- Left Column: Bio -->
       <div class="left-col">
-        <h1 class="hero-heading">Aspiring public servant<br />and future legal scholar</h1>
+        <h1 class="hero-heading" id="hero-heading">&nbsp;</h1>
 
         <p class="bio">
-          Welcome! Jose F. Brevil, Jr. I’m Jose, graduate of the Mississippi School for Mathematics and Science, and an undergraduate student at the University of Mississippi, pursuing a B.S. in Economics and B.A. in Public Policy Leadership. Additionally, I minor in Intelligence and Security Studies. With a passion for law, policy, national security, and service, I’m driven by a mission to explore ways to better serve people. Through many opportunities and engagements, I have developed a strong foundation in critical thinking, public speaking, and civic engagement. I’m passionate about a number of fields, including information technology, artificial intelligence, cybersecurity, criminal justice, politics, business law, finance, and expanding equitable access to legal services. I believe in making knowledge actionable and service transformative.
+          Welcome. I’m Jose F. Brevil, Jr., a graduate of the <a href="https://themsms.org/" target="_blank" rel="noopener" class="prose-link">Mississippi School for Mathematics and Science</a> and an undergraduate student at the <a href="https://olemiss.edu/" target="_blank" rel="noopener" class="prose-link">University of Mississippi</a> pursuing a B.S. in Economics and a B.A. in <a href="https://olemiss.edu/lottleader/" target="_blank" rel="noopener" class="prose-link">Public Policy Leadership</a>, with a minor in <a href="https://olemiss.edu/departments/university-programs/intelligence-security-studies/" target="_blank" rel="noopener" class="prose-link">Intelligence and Security Studies</a>. My academic interests lie at the intersection of law, public policy, and national security, with a particular focus on international law and national security law.
         </p>
 
         <p class="bio">
-          Prior to [University], I [brief background — hometown, relevant pre-college
-          experience]. I am currently [current role/activity — e.g., a research assistant
-          in the [Lab Name] lab / working on an honors thesis titled "[Title]"].
+          I am especially interested in how legal institutions shape public policy, economic development, and security strategy. Through academic study and public engagement, I seek to understand how legal frameworks can strengthen governance, support effective institutions, and expand access to opportunity.
         </p>
 
         <p class="bio">
-          Outside the classroom, I am involved in several campus organizations. I am also deeply committed to expanding my knowledge every day, which motivates much of my academic and professional work.
-          Please do not hesistate to reach out, I love meeting new people!
+          Outside the classroom, I am involved in several campus organizations and remain committed to continually expanding my knowledge in law, policy, and global affairs. These pursuits guide much of my academic and professional work.
+        </p>
+
+        <p class="bio">
+          Please feel free to reach out, I always welcome the opportunity to connect!
         </p>
       </div>
 
@@ -48,7 +49,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <p class="jump-label">Jump to</p>
           <ul class="jump-links">
 <li><a href="/experience">Experience</a></li>
-            <li><a href="/resume">Resume</a></li>
+            <li><a href="/cv">CV</a></li>
 
           </ul>
         </div>
@@ -75,6 +76,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 /* Left column capped at readable width */
 .left-col {
   max-width: var(--content-width);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 
 .hero-heading {
@@ -163,4 +169,69 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .sidebar { position: static; flex-direction: row; flex-wrap: wrap; }
   .contact-card, .jump-card { flex: 1; min-width: 200px; }
 }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.bio {
+  opacity: 0;
+}
+.bio.visible {
+  animation: fadeIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.prose-link {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s, text-underline-offset 0.2s;
+}
+.prose-link:hover {
+  color: var(--color-accent);
+  text-underline-offset: 5px;
+  text-decoration: underline;
+}
+
+.hero-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.85em;
+  background: var(--color-text);
+  margin-left: 3px;
+  vertical-align: middle;
+  animation: blink 0.8s step-end infinite;
+}
 </style>
+
+<script>
+  const el = document.getElementById('hero-heading')!;
+  const lines = ['Aspiring public servant', 'and future legal scholar'];
+  const full = lines.join('\n');
+  const cursor = document.createElement('span');
+  cursor.className = 'hero-cursor';
+
+  const paras = document.querySelectorAll<HTMLElement>('.bio');
+  paras.forEach((p, idx) => {
+    setTimeout(() => p.classList.add('visible'), idx * 200);
+  });
+
+  let i = 0;
+  el.textContent = '';
+  el.appendChild(cursor);
+
+  const timer = setInterval(() => {
+    const char = full[i];
+    if (char === '\n') {
+      el.insertBefore(document.createElement('br'), cursor);
+    } else {
+      el.insertBefore(document.createTextNode(char), cursor);
+    }
+    i++;
+    if (i >= full.length) {
+      clearInterval(timer);
+      setTimeout(() => cursor.remove(), 1800);
+    }
+  }, 55);
+</script>

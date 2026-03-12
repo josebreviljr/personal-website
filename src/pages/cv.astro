@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const pages = ['/resume-1.png', '/resume-2.png', '/resume-3.png'];
 ---
 
-<BaseLayout title="Résumé">
+<BaseLayout title="CV">
   <div class="cv-wrap">
     {pages.map((src, i) => (
       <div class="cv-page">
@@ -67,4 +67,20 @@ const pages = ['/resume-1.png', '/resume-2.png', '/resume-3.png'];
   transition: opacity 0.15s;
 }
 .download-btn:hover { opacity: 0.88; text-decoration: none; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cv-wrap {
+  opacity: 0;
+}
+.cv-wrap.visible {
+  animation: fadeIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
 </style>
+
+<script>
+  document.querySelector('.cv-wrap')?.classList.add('visible');
+</script>
