@@ -1,14 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import { sanityClient } from '../lib/sanity';
 
-const all = await getCollection('experience');
-const sorted = all.sort((a, b) => a.data.order - b.data.order);
+const all = await sanityClient.fetch(`*[_type == "experience"] | order(order asc)`);
 
-const education    = sorted.filter(e => e.data.section === 'education');
-const professional = sorted.filter(e => e.data.section === 'professional');
-const leadership   = sorted.filter(e => e.data.section === 'leadership');
-const skills       = sorted.filter(e => e.data.section === 'skills');
+const education    = all.filter((e: any) => e.section === 'education');
+const professional = all.filter((e: any) => e.section === 'professional');
+const leadership   = all.filter((e: any) => e.section === 'leadership');
+const skills       = all.filter((e: any) => e.section === 'skills');
 ---
 
 <BaseLayout title="Experience">
@@ -17,14 +16,14 @@ const skills       = sorted.filter(e => e.data.section === 'skills');
     <!-- Education -->
     <section class="section">
       <h2 class="section-heading">Education</h2>
-      {education.map(entry => (
+      {education.map((entry: any) => (
         <div class="entry">
           <div class="entry-header">
-            <span class="entry-title">{entry.data.title}</span>
-            <span class="entry-date">{entry.data.location}</span>
+            <span class="entry-title">{entry.title}</span>
+            <span class="entry-date">{entry.location}</span>
           </div>
-          <div class="entry-sub">{entry.data.subtitle}</div>
-          {entry.data.bullets.map(bullet => (
+          <div class="entry-sub">{entry.subtitle}</div>
+          {entry.bullets.map((bullet: string) => (
             <p class="entry-bullet">· {bullet}</p>
           ))}
         </div>
@@ -34,14 +33,14 @@ const skills       = sorted.filter(e => e.data.section === 'skills');
     <!-- Professional Experience -->
     <section class="section">
       <h2 class="section-heading">Professional Experience</h2>
-      {professional.map(entry => (
+      {professional.map((entry: any) => (
         <div class="entry">
           <div class="entry-header">
-            <span class="entry-title">{entry.data.title}</span>
-            <span class="entry-date">{entry.data.location}</span>
+            <span class="entry-title">{entry.title}</span>
+            <span class="entry-date">{entry.location}</span>
           </div>
-          <div class="entry-sub">{entry.data.subtitle}</div>
-          {entry.data.bullets.map(bullet => (
+          <div class="entry-sub">{entry.subtitle}</div>
+          {entry.bullets.map((bullet: string) => (
             <p class="entry-bullet">· {bullet}</p>
           ))}
         </div>
@@ -51,14 +50,14 @@ const skills       = sorted.filter(e => e.data.section === 'skills');
     <!-- Leadership & Activities -->
     <section class="section">
       <h2 class="section-heading">Leadership &amp; Activities</h2>
-      {leadership.map(entry => (
+      {leadership.map((entry: any) => (
         <div class="entry">
           <div class="entry-header">
-            <span class="entry-title">{entry.data.title}</span>
-            <span class="entry-date">{entry.data.location}</span>
+            <span class="entry-title">{entry.title}</span>
+            <span class="entry-date">{entry.location}</span>
           </div>
-          <div class="entry-sub">{entry.data.subtitle}</div>
-          {entry.data.bullets.map(bullet => (
+          <div class="entry-sub">{entry.subtitle}</div>
+          {entry.bullets.map((bullet: string) => (
             <p class="entry-bullet">· {bullet}</p>
           ))}
         </div>
@@ -68,10 +67,10 @@ const skills       = sorted.filter(e => e.data.section === 'skills');
     <!-- Skills & Certifications -->
     <section class="section">
       <h2 class="section-heading">Skills &amp; Certifications</h2>
-      {skills.map(entry => (
+      {skills.map((entry: any) => (
         <div class="entry">
-          <p class="subsection-label">{entry.data.title}</p>
-          {entry.data.bullets.map(bullet => (
+          <p class="subsection-label">{entry.title}</p>
+          {entry.bullets.map((bullet: string) => (
             <p class="entry-bullet">· {bullet}</p>
           ))}
         </div>

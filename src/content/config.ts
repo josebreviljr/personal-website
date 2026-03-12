@@ -9,16 +9,4 @@ const blog = defineCollection({
   }),
 });
 
-const experience = defineCollection({
-  type: 'data',
-  schema: z.object({
-    section:  z.enum(['education', 'professional', 'leadership', 'skills']),
-    title:    z.string(),
-    location: z.string().default(''),
-    subtitle: z.string().default(''),
-    bullets:  z.array(z.string()).default([]),
-    order:    z.number().default(0),
-  }),
-});
-
-export const collections = { blog, experience };
+export const collections = { blog };
