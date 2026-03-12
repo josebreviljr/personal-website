@@ -5,7 +5,7 @@ import { schemaTypes } from './schemas';
 export default defineConfig({
   name: 'default',
   title: 'Jose Brevil — Personal Website',
-  projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
+  projectId: 'r5rf35nk',
   dataset: 'production',
   plugins: [structureTool()],
   schema: { types: schemaTypes },
