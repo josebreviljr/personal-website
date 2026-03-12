@@ -6,6 +6,17 @@ const bio = await sanityClient.fetch(`*[_type == "bio"][0]{ ..., profilePhoto { 
 ---
 
 <BaseLayout title="About Me">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Jose F. Brevil, Jr.",
+      "url": "https://josebrevil.com",
+      "image": bio.profilePhoto?.asset?.url ?? "https://josebrevil.com/profile.jpg",
+      "email": bio.email,
+      "sameAs": [bio.linkedinUrl].filter(Boolean),
+    })} />
+  </Fragment>
   <div class="container page-content">
     <div class="about-grid">
 
